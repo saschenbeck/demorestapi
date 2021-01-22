@@ -7,42 +7,49 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "persons")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private byte age;
 
-    @Column
+    @Column(nullable = false)
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private LocalDate dateJoined;
 
-    @Column
+    @Column(nullable = false)
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private LocalDate dateUpdated;
+
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Job job;
 
     public Person (){
 
     }
 
-    public Person(long id, String name, byte age, LocalDate dateJoined, LocalDate dateUpdated) {
+    public Person(long id, String name, byte age, LocalDate dateJoined, LocalDate dateUpdated, Job job) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.dateJoined = dateJoined;
         this.dateUpdated = dateUpdated;
+        this.job = job;
     }
 
-    public Person(String name, byte age, LocalDate dateJoined, LocalDate dateUpdated) {
+    public Person(String name, byte age, LocalDate dateJoined, LocalDate dateUpdated, Job job) {
         this.name = name;
         this.age = age;
         this.dateJoined = dateJoined;
         this.dateUpdated = dateUpdated;
+        this.job = job;
     }
 
     public long getId() {
@@ -83,5 +90,13 @@ public class Person {
 
     public void setDateUpdated(LocalDate dateUpdated) {
         this.dateUpdated = dateUpdated;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
     }
 }
