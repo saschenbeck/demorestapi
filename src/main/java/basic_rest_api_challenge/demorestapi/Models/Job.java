@@ -1,5 +1,7 @@
 package basic_rest_api_challenge.demorestapi.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +21,7 @@ public class Job {
     private double salary;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
-    private List<Person> jobHolder;
+    private List<Person> jobHolderList;
 
     public Job(){
 
@@ -29,26 +31,26 @@ public class Job {
         this.id = id;
         this.jobTitle = jobTitle;
         this.salary = salary;
-        this.jobHolder = new ArrayList<>();
+        this.jobHolderList = new ArrayList<>();
     }
 
     public Job(String jobTitle, double salary) {
         this.jobTitle = jobTitle;
         this.salary = salary;
-        this.jobHolder = new ArrayList<>();
+        this.jobHolderList = new ArrayList<>();
     }
 
     public Job(long id, String jobTitle, double salary, List<Person> jobHolders){
         this.id = id;
         this.jobTitle = jobTitle;
         this.salary = salary;
-        this.jobHolder = jobHolders;
+        this.jobHolderList = jobHolders;
     }
 
     public Job(String jobTitle, double salary, List<Person> jobHolders){
         this.jobTitle = jobTitle;
         this.salary = salary;
-        this.jobHolder = jobHolders;
+        this.jobHolderList = jobHolders;
     }
 
     public long getId() {
@@ -75,11 +77,12 @@ public class Job {
         this.salary = salary;
     }
 
+    @JsonBackReference
     public List<Person> getJobHolderList() {
-        return jobHolder;
+        return jobHolderList;
     }
 
     public void setJobHolder(Person jobHolder) {
-        this.jobHolder.add(jobHolder);
+        this.jobHolderList.add(jobHolder);
     }
 }

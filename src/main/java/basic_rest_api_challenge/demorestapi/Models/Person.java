@@ -1,5 +1,6 @@
 package basic_rest_api_challenge.demorestapi.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -92,6 +93,7 @@ public class Person {
         this.dateUpdated = dateUpdated;
     }
 
+    @JsonBackReference
     public Job getJob() {
         return job;
     }
