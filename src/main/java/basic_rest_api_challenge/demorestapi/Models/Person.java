@@ -1,11 +1,10 @@
 package basic_rest_api_challenge.demorestapi.Models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "persons")
@@ -18,7 +17,7 @@ public class Person {
     private String name;
 
     @Column(nullable = false)
-    private byte age;
+    private short age;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "MM-dd-yyyy")
@@ -36,7 +35,7 @@ public class Person {
 
     }
 
-    public Person(long id, String name, byte age, LocalDate dateJoined, LocalDate dateUpdated, Job job) {
+    public Person(long id, String name, short age, LocalDate dateJoined, LocalDate dateUpdated, Job job) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -45,7 +44,7 @@ public class Person {
         this.job = job;
     }
 
-    public Person(String name, byte age, LocalDate dateJoined, LocalDate dateUpdated, Job job) {
+    public Person(String name, short age, LocalDate dateJoined, LocalDate dateUpdated, Job job) {
         this.name = name;
         this.age = age;
         this.dateJoined = dateJoined;
@@ -69,11 +68,11 @@ public class Person {
         this.name = name;
     }
 
-    public byte getAge() {
+    public short getAge() {
         return age;
     }
 
-    public void setAge(byte age) {
+    public void setAge(short age) {
         this.age = age;
     }
 
@@ -93,7 +92,7 @@ public class Person {
         this.dateUpdated = dateUpdated;
     }
 
-    @JsonBackReference
+    @JsonManagedReference
     public Job getJob() {
         return job;
     }

@@ -50,21 +50,21 @@ public class testPerson {
 
     @Test
     public void testPersonAgeEquals(){
-        byte actual = person.getAge();
-        byte expected = 35;
+        short actual = person.getAge();
+        short expected = 35;
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void testPersonAgeNotEquals(){
-        byte actual = person.getAge();
-        List<Byte> ages = new ArrayList<>();
-        ages.add((byte) 34);
-        ages.add((byte) 36);
-        ages.add((byte) 37);
-        ages.add((byte) 53);
-        for (byte expected: ages){
+        short actual = person.getAge();
+        List<Short> ages = new ArrayList<>();
+        ages.add((short)34);
+        ages.add((short) 36);
+        ages.add((short) 37);
+        ages.add((short) 53);
+        for (short expected: ages){
             assertNotEquals(expected, actual);
         }
     }
