@@ -1,6 +1,6 @@
 package basic_rest_api_challenge.demorestapi.ModelsTest;
 import basic_rest_api_challenge.demorestapi.Models.Person;
-import org.joda.time.LocalDate;
+//import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class testPerson {
     public void setUp(){
         this.person.setName("Bob");
         this.person.setAge((byte) 35);
-        this.person.setDateJoined(LocalDate.parse("2011-02-01"));
+        this.person.setDateJoined(LocalDate.parse("2011-01-01"));
         this.person.setDateUpdated(LocalDate.now());
     }
 
@@ -73,7 +73,8 @@ public class testPerson {
     public void testPersonDateJoinedEquals(){
         LocalDate actual = person.getDateJoined();
         LocalDate expected = LocalDate.parse("2011-01-01");
-
+        System.out.println("Actual Date Joined: " + actual);
+        System.out.println("Expected Date Joined: " + expected);
         assertEquals(expected, actual);
     }
 
@@ -85,7 +86,9 @@ public class testPerson {
         dates.add(LocalDate.parse("2012-01-01"));
         dates.add(LocalDate.parse("2011-02-02"));
         dates.add(LocalDate.parse("2011-12-01"));
+        System.out.println("Actual Date Joined: " + actual);
         for (LocalDate expected : dates){
+            System.out.println("Expected Date Joined: " + expected + " Index: " + dates.indexOf(expected));
             assertNotEquals(expected, actual);
         }
     }
@@ -94,6 +97,8 @@ public class testPerson {
     public void testPersonDateUpdatedEquals(){
         LocalDate actual = person.getDateUpdated();
         LocalDate expected = LocalDate.now();
+        System.out.println("Actual Date Updated: " + actual);
+        System.out.println("Expected Date Updated: " + expected);
 
         assertEquals(expected, actual);
     }
@@ -107,7 +112,9 @@ public class testPerson {
         dates.add(LocalDate.now().plusWeeks(1));
         dates.add(LocalDate.now().plusMonths(1));
         dates.add(LocalDate.now().plusYears(1));
+        System.out.println("Actual Date Updated: " + actual);
         for (LocalDate expected : dates){
+            System.out.println("Expected Date Updated: " + expected + " Index: " + dates.indexOf(expected));
             assertNotEquals(expected, actual);
         }
     }

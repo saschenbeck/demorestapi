@@ -1,10 +1,11 @@
 package basic_rest_api_challenge.demorestapi.ModelsTest;
 import basic_rest_api_challenge.demorestapi.Models.Job;
 import basic_rest_api_challenge.demorestapi.Models.Person;
-import org.joda.time.LocalDate;
+//import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -4,6 +4,7 @@ import basic_rest_api_challenge.demorestapi.Exceptions.ResourceNotFoundException
 import basic_rest_api_challenge.demorestapi.Models.Person;
 import basic_rest_api_challenge.demorestapi.Repos.PersonRepository;
 import basic_rest_api_challenge.demorestapi.Services.ExceptionService;
+import basic_rest_api_challenge.demorestapi.Services.SeedListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,14 @@ public class PersonController {
     @Autowired
     private ExceptionService exceptionService;
 
+    @Autowired
+    private SeedListService seedList;
+
+    @GetMapping("")
+    public void start(){
+        seedList.jobSeedList();
+        seedList.personSeedList();
+    }
 
     //Find All Person Objects
     @GetMapping("/persons")

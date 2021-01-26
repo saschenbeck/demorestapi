@@ -1,7 +1,10 @@
 package basic_rest_api_challenge.demorestapi.Models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.joda.time.LocalDate;
+//import org.joda.time.LocalDate;
+import java.sql.Date;
+import java.time.LocalDate;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
