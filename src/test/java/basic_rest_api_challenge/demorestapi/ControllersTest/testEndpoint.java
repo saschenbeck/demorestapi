@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -104,7 +104,26 @@ public class testEndpoint {
         assertNotEquals(LocalDate.now().plusDays(1), personService.getPersonsByName(name).get(0).getDateUpdated());
         assertNotEquals(LocalDate.now().minusDays(1), personService.getPersonsByName(name).get(0).getDateUpdated());
         assertNotEquals(job1, personService.getPersonsByName(name).get(0).getJob());
+    }
 
+    @Test
+    public void savePersonEquals(){
+        Person person = new Person("Bob", (short) 35, LocalDate.parse("2011-01-01"), LocalDate.now() , job2);
+        when(personDao.save(person)).thenReturn(person);
+        assertEquals(person, personService.addPerson(person));
+    }
 
+    @Test
+    public void savePersonNotEquals(){
+        Person person = new Person("Bob", (short) 35, LocalDate.parse("2011-01-01"), LocalDate.now() , job2);
+        when(personDao.save(person)).thenReturn(person);
+        assertNotEquals(new Person(), personService.addPerson(person));
+    }
+
+    @Test
+    public void deletePersonVerify(){
+        Person person = new Person("Bob",(short) 35, LocalDate.parse("2011-01-01"),LocalDate.now(), job2);
+        personService.deletePerson(person);
+        verify(personDao, times(1)).delete(person);
     }
 }
