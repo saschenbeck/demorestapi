@@ -31,7 +31,7 @@ public class PersonService {
 
     public List<Person> getPersonsByName(String personName){
         System.out.println("Finding all Person Objects where name is like: " + personName);
-        return personDao.findAllByNameIsLike(personName);
+        return personDao.findAllByName(personName);
     }
 
     public void deletePerson(Person personToDelete){
