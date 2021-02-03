@@ -103,4 +103,16 @@ public class JobControllerTest {
 
         assertEquals(person, job.getJobHolderList().get(0));
     }
+
+    @Test
+    public void jobHoldersListNotEquals(){
+        List<Person> jobHolders = new ArrayList<>();
+        Job job = new Job("CEO", 100000, jobHolders);
+        Person person = new Person("Bob",(short) 35,LocalDate.parse("2011-01-01"),LocalDate.now(), job);
+        Person person2 = new Person();
+        jobHolders.add(person);
+        jobHolders.add(person2);
+
+        assertNotEquals(person2, job.getJobHolderList().get(0));
+    }
 }
